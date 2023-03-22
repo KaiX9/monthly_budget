@@ -1,0 +1,67 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+    <h1>Monthly Budget</h1>
+
+    <form method="POST" data-th-action="@{/expense}" data-th-object="${expense}">
+
+        <table>
+            <tr>
+                <td>Expenses:</td>
+                <td>
+                    <select name="expense" data-th-field="*{expenses}">
+                        <option value="entertainment">Entertainment</option>
+                        <option value="transportation">Transportation</option>
+                        <option value="dining">Dining</option>
+                        <option value="others">Others</option>
+                    </select>
+                    <div data-th-if="${#fields.hasErrors('expenses')}">
+                        <span data-th-errors="*{expenses}"></span>
+                    </div>
+                </td>
+            </tr>
+            <tr>
+                <td>Amount:</td>
+                <td>
+                    <input type="number" step="0.1" name="expenseCost" data-th-field="*{expenseCost}">
+                    <div data-th-if="${#fields.hasErrors('expenseCost')}">
+                        <span data-th-errors="*{expenseCost}"></span>
+                    </div>
+                </td>
+                
+            </tr>
+
+        </table>
+
+        <div data-th-if="${#lists.isEmpty(budget.expenses)}">
+            <h2>Your monthly budget is currently empty</h2>
+        </div>
+
+        <table data-th-unless="${#lists.isEmpty(budget.expenses)}">
+            <thead>
+                <tr>
+                    <th>Expense</th>
+                    <th>Amount</th>
+                </tr>
+            </thead>
+            <tbody>
+                <tr data-th-each="e : ${budget.expenses}">
+                    <td><span data-th-text="${e.expenses}"></span></td>
+                    <td><span data-th-text="${e.expenseCost}"></span></td>
+                </tr>
+            </tbody>
+        </table>
+
+        <div>
+            <button type="submit">Add</button>
+            <button type="submit" formmethod="GET" formaction="/details">Next</button>
+        </div>
+    </form>
+</body>
+</html>

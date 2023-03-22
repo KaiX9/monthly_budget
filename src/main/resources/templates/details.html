@@ -1,0 +1,60 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+    <h1>Your Details</h1>
+    <form method="POST" data-th-action="@{/save}" data-th-object="${details}">
+    <table>
+        <tr>
+            <td>Name:</td>
+            <td>
+                <input type="text" name="name" data-th-field="*{name}">
+                <div data-th-if="${#fields.hasErrors('name')}">
+                    <span data-th-errors="*{name}"></span>
+                </div>
+            </td>
+            
+        </tr>
+        <tr>
+            <td>Time Period (State which year & month):</td>
+            <td>
+                <input type="text" name="timePeriod" data-th-field="*{timePeriod}">
+                <div data-th-if="${#fields.hasErrors('timePeriod')}">
+                    <span data-th-errors="*{timePeriod}"></span>
+                </div>
+            </td>
+            
+        </tr>
+        <tr>
+            <td>Goal Amount:</td>
+            <td>
+                <input type="number" step="0.1" name="goal" data-th-field="*{goal}">
+                <div data-th-if="${#fields.hasErrors('goal')}">
+                    <span data-th-errors="*{goal}"></span>
+                </div>
+            </td>
+            
+        </tr>
+        <tr>
+            <td>Income:</td>
+            <td>
+                <input type="number" step="0.1" name="income" data-th-field="*{income}">
+                <div data-th-if="${#fields.hasErrors('income')}">
+                    <span data-th-errors="*{income}"></span>
+                </div>
+            </td>
+            
+        </tr>
+        <tr>
+            <td></td>
+            <td><button type="submit">Submit</button></td>
+        </tr>
+    </table>
+    </form>
+</body>
+</html>

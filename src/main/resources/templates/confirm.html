@@ -1,0 +1,44 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+    <h1>Confirmation Details</h1>
+    <table data-th-object="${entry}">
+        <tr>
+            <td>Ref Id:</td>
+            <td>
+                <a data-th-href="@{'/entry/' + *{refId}}" data-th-text="*{refId}"></a>
+            </td>
+        </tr>
+        <tr>
+            <td>Name:</td>
+            <td data-th-text="${entry.getDetails().getName()}"></td>
+        </tr>
+        <tr>
+            <td>Time Period:</td>
+            <td data-th-text="${entry.getDetails().getTimePeriod()}"></td>
+        </tr>
+        <tr>
+            <td>Total Expenses:</td>
+            <td data-th-text="${entry.getDetails().getTotalExpenses()}"></td>
+        </tr>
+        <tr>
+            <td>Income:</td>
+            <td data-th-text="${entry.getDetails().getIncome()}"></td>
+        </tr>
+        <tr>
+            <td>Goal:</td>
+            <td data-th-text="${entry.getDetails().getGoal()}"></td>
+        </tr>
+        <tr>
+            <td>Amount To Goal:</td>
+            <td data-th-text="${entry.amountToGoal<0}?'You have achieved your goal!':${entry.amountToGoal}"></td>
+        </tr>
+    </table>
+</body>
+</html>
